@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hgs.caipiao.dao.CaipiaoNumberDao">
+  <resultMap id="BaseResultMap" type="com.hgs.caipiao.entity.CaipiaoNumberEntity">
+    <!--@mbg.generated-->
+    <!--@Table t_caipiao_number-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="lottery_game_name" jdbcType="VARCHAR" property="lotteryGameName" />
+    <result column="lottery_number" jdbcType="VARCHAR" property="lotteryNumber" />
+    <result column="lottery_draw_num" jdbcType="VARCHAR" property="lotteryDrawNum" />
+    <result column="term_num" jdbcType="INTEGER" property="termNum" />
+    <result column="multiple" jdbcType="INTEGER" property="multiple" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, lottery_game_name, lottery_number,lottery_draw_num, term_num, multiple, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_caipiao_number
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from t_caipiao_number
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hgs.caipiao.entity.CaipiaoNumberEntity">
+    <!--@mbg.generated-->
+    insert into t_caipiao_number (id, lottery_game_name, lottery_draw_num, 
+      term_num, multiple, user_id,lottery_number
+      )
+    values (#{id,jdbcType=VARCHAR}, #{lotteryGameName,jdbcType=VARCHAR}, #{lotteryDrawNum,jdbcType=VARCHAR}, 
+      #{termNum,jdbcType=INTEGER}, #{multiple,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR},#{lotteryNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hgs.caipiao.entity.CaipiaoNumberEntity">
+    <!--@mbg.generated-->
+    insert into t_caipiao_number
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lotteryGameName != null">
+        lottery_game_name,
+      </if>
+      <if test="lotteryDrawNum != null">
+        lottery_draw_num,
+      </if>
+      <if test="termNum != null">
+        term_num,
+      </if>
+      <if test="multiple != null">
+        multiple,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="lotteryNumber != null">
+        lottery_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryGameName != null">
+        #{lotteryGameName,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryDrawNum != null">
+        #{lotteryDrawNum,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        #{termNum,jdbcType=INTEGER},
+      </if>
+      <if test="multiple != null">
+        #{multiple,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryNumber != null">
+        #{lotteryNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hgs.caipiao.entity.CaipiaoNumberEntity">
+    <!--@mbg.generated-->
+    update t_caipiao_number
+    <set>
+      <if test="lotteryGameName != null">
+        lottery_game_name = #{lotteryGameName,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryDrawNum != null">
+        lottery_draw_num = #{lotteryDrawNum,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        term_num = #{termNum,jdbcType=INTEGER},
+      </if>
+      <if test="multiple != null">
+        multiple = #{multiple,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryNumber != null">
+        lottery_number = #{lotteryNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hgs.caipiao.entity.CaipiaoNumberEntity">
+    <!--@mbg.generated-->
+    update t_caipiao_number
+    set lottery_game_name = #{lotteryGameName,jdbcType=VARCHAR},
+      lottery_draw_num = #{lotteryDrawNum,jdbcType=VARCHAR},
+      term_num = #{termNum,jdbcType=INTEGER},
+      multiple = #{multiple,jdbcType=INTEGER},
+    lottery_number = #{lotteryNumber,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getByUserId" resultMap="BaseResultMap">
+    select t1.*, t2.name as user_name from
+    t_caipiao_number t1,
+    t_caipiao_user t2
+    where
+    t1.user_id = t2.id
+    and
+    user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+</mapper>

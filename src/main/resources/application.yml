@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: mxgraph
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://121.41.46.229:5432/caipiao
+    username: postgres
+    password: Huawei@123
+
+server:
+  port: 18003
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
